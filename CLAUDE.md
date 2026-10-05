@@ -1,51 +1,20 @@
-# CLAUDE.md
+# CLAUDE.md — NexMeet v1 (arşiv sürümü)
 
-Bu dosya, bu proje üzerinde çalışırken Claude'un (Claude Code dahil) izlemesi gereken bağlamı ve kuralları içerir.
+İlk sürüm (2026-05-14): Google Meet benzeri WebRTC video konferans — çoklu katılımcı, mikrofon/kamera, ekran paylaşımı, WebM kayıt, sohbet, davet linki, dosya paylaşımı, uzak kontrol ajanı. **Join token ve TTS/çeviri yok.**
 
-## Proje
+- GitHub: https://github.com/SHapeloglu/nexmeet_v1 — **PUBLIC repo**
+- **Güncel/canlı sürüm: `/root/nexmeet` (repo `nexmeet_v3`)** — yeni geliştirme orada yapılır. Bu repo tarihsel referans.
+- Mimari: `architect.md` · Görevler: `task.md` · Fikirler: `backlog.md` · Günlük: `session.md`
 
-**🎥 NexMeet — Video Konferans Uygulaması** — Google Meet benzeri, tam özellikli web tabanlı video konferans uygulaması.
-
-- GitHub: https://github.com/SHapeloglu/nexmeet_v1
-
-## Teknoloji Yığını
-
-- FastAPI
-- Uvicorn
-- Docker / docker compose
-- Bash betikleri
-
-## Önemli Dosyalar
-
-- `agent/requirements.txt`
-- `backend/main.py`
-- `backend/requirements.txt`
-- `docker/Dockerfile`
-- `docker/docker-compose.yml`
-- `frontend/index.html`
-
-Mimari ayrıntılar için bkz. `architect.md`.
-
-## Sık Kullanılan Komutlar
+## Çalıştırma (yerel deneme)
 
 ```bash
-docker compose up -d --build
-docker compose logs -f
+./scripts/start.sh          # Windows: scripts\start.bat — venv + pip + uvicorn
+# veya: cd backend && pip install -r requirements.txt && uvicorn main:app --reload --port 8000
 ```
 
 ## Kurallar
 
-- Yapılandırmayı ortam değişkenlerinden oku; endpoint şemalarını Pydantic modelleriyle tanımla.
-- Bloklayan I/O işlemlerini async endpoint içinde doğrudan çağırma.
-- `.env`, parola, token ve API anahtarlarını asla commit etme.
-- Her çalışma oturumunun sonunda `session.md`ye kısa kayıt düş; görev durumunu `task.md`de güncelle.
-- Önceliklendirilmemiş fikirleri `backlog.md`ye yaz; somutlaşınca `task.md`ye taşı.
-
-## Çalışma Dosyaları
-
-| Dosya | Amaç |
-|---|---|
-| `architect.md` | Mimari ve dizin yapısı referansı |
-| `task.md` | Aktif / devam eden / tamamlanan görevler |
-| `backlog.md` | Önceliklendirilmemiş fikir ve teknik borç havuzu |
-| `session.md` | Oturum günlüğü — her oturum sonunda güncellenir |
+- Bu repoda değişiklik yapmadan önce kullanıcıya sor; düzeltmeler normalde v3'e gider.
+- `uploads/` içinde 1 kullanıcı görseli ve `backend/__pycache__` izleniyor; `.gitignore` ve `.env.example` yok.
+- Public repo: kullanıcı dosyası, IP, anahtar commit etme.

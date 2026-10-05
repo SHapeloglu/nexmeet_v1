@@ -1,67 +1,24 @@
-# architect.md — 🎥 NexMeet — Video Konferans Uygulaması Mimari Referansı
+# architect.md — NexMeet v1 Mimarisi
 
-Bu dosya projenin yapısının hızlı-referans özetidir. Kod değiştikçe güncel tutun.
-
-## Genel Bakış
-
-Google Meet benzeri, tam özellikli web tabanlı video konferans uygulaması.
-
-## Teknoloji Yığını
-
-- FastAPI
-- Uvicorn
-- Docker / docker compose
-- Bash betikleri
-
-## Dizin Yapısı
+> Güncel mimari: `/root/nexmeet/architect.md` (v3).
 
 ```
-README.md
-agent/
-  agent.py
-  requirements.txt
-  run_agent.bat
-  run_agent.sh
-backend/
-  __init__.py
-  main.py
-  requirements.txt
-docker/
-  Dockerfile
-  docker-compose.yml
-frontend/
-  index.html
-scripts/
-  start.bat
-  start.sh
-uploads/
-  6ba37304-ffec-423f-a724-1e85c99dfe54_image.jpg
+Tarayıcı (frontend/index.html + static/js/app.js) ──WS sinyalizasyon──► FastAPI backend/main.py ──► uploads/
+        └──────────── WebRTC P2P medya ────────────┘                      └─ WS ajan / kontrol oturumları
+Uzak PC: agent/agent.py ──WS /ws/agent/{id}──► backend
 ```
 
-## Modüller / Kaynak Dosyalar
+## Uç Noktalar
 
-- `agent/agent.py` — NexMeet Uzak Kontrol Ajanı
-- `agent/run_agent.sh`
-- `backend/main.py`
-- `scripts/start.sh` — NexMeet Başlatma Scripti (Linux/macOS)
+`/`, `/room/{id}`, `/api/room/{id}/info`, `/api/upload/{room}`, `/api/download/{file_id}`, `/api/room/{room}/files`, WS `/ws/{room}/{peer}`, WS `/ws/agent/{agent_id}`, WS `/ws/control/{session}/{controller}`, `/api/control/request|respond|stop`
 
-## Giriş Noktaları ve Yapılandırma
+## Dosyalar
 
-- `agent/requirements.txt`
-- `backend/main.py`
-- `backend/requirements.txt`
-- `docker/Dockerfile`
-- `docker/docker-compose.yml`
-- `frontend/index.html`
+- `backend/main.py` — tüm API + WebSocket, durum bellekte.
+- `frontend/` — tek sayfa arayüz.
+- `agent/` — uzak kontrol ajanı (`agent.py`, başlatıcılar).
+- `docker/` — Dockerfile + compose; `scripts/start.*` — yerel başlatma.
 
-## Dağıtım / Çalışma Ortamı
+## Sürüm Zinciri
 
-- GitHub: https://github.com/SHapeloglu/nexmeet_v1
-
-## Diğer Dokümanlar
-
-- `README.md`
-
-## Mimari Kararlar
-
-_Önemli tasarım kararlarını ve gerekçelerini buraya ekleyin (ör. "X yerine Y seçildi çünkü ...")._
+v1 (temel konferans + uzak kontrol) → v2 (token, .env, TTS proxy, GPU TTS servisi) → v3 (canlı; Kokoro CPU TTS, ajan token doğrulama, dosya TTL).
