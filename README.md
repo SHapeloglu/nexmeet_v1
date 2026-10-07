@@ -1,5 +1,7 @@
 # 🎥 NexMeet — Video Konferans Uygulaması
 
+> 🗄️ **ARŞİV (2026-10-07):** Bu sürüm artık geliştirilmiyor. Güncel sürüm: **[SHapeloglu/nexmeet_v3](https://github.com/SHapeloglu/nexmeet_v3)** (canlı: nexmeet.powerbi.com.tr).
+
 Google Meet benzeri, tam özellikli web tabanlı video konferans uygulaması.
 
 ## ✨ Özellikler

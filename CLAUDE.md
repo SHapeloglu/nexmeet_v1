@@ -1,5 +1,7 @@
 # CLAUDE.md — NexMeet v1 (arşiv sürümü)
 
+> 🗄️ **ARŞİV (2026-10-07):** Bu sürüm artık geliştirilmiyor. Güncel sürüm: **[SHapeloglu/nexmeet_v3](https://github.com/SHapeloglu/nexmeet_v3)** (canlı: nexmeet.powerbi.com.tr).
+
 İlk sürüm (2026-05-14): Google Meet benzeri WebRTC video konferans — çoklu katılımcı, mikrofon/kamera, ekran paylaşımı, WebM kayıt, sohbet, davet linki, dosya paylaşımı, uzak kontrol ajanı. **Join token ve TTS/çeviri yok.**
 
 - GitHub: https://github.com/SHapeloglu/nexmeet_v1 — **PUBLIC repo**
